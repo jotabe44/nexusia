@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus AI Digital | Soluções Digitais & Tráfego Pago</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0F17',
+                            card: '#131927',
+                            border: '#1E293B',
+                            purple: '#7C3AED',
+                            cyan: '#06B6D4',
+                            gold: '#F59E0B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.25) 0%, rgba(6, 182, 212, 0.1) 40%, rgba(11, 15, 23, 0) 70%)',
+                        'glow-purple': 'radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, rgba(0,0,0,0) 70%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0B0F17;
+            color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #06B6D4 0%, #7C3AED 50%, #F59E0B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-border {
+            position: relative;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(6, 182, 212, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 1px;
+        }
+
+        .gradient-border-inner {
+            background: #131927;
+            border-radius: calc(1rem - 1px);
+        }
+
+        .glass-header {
+            background: rgba(11, 15, 23, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Animações CSS */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Pulse glow customizado */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        .glow-effect {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-purple selection:text-white">
+
+    <!-- HEADER / NAVEGAÇÃO -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-header border-b border-brand-border/60 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-purple via-brand-cyan to-brand-gold p-0.5 shadow-lg shadow-brand-purple/20">
+                    <div class="w-full h-full bg-brand-dark rounded-[10px] flex items-center justify-center group-hover:bg-opacity-80 transition">
+                        <i class="fa-solid fa-bolt text-brand-cyan text-xl"></i>
+                    </div>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-white">NEXUS <span class="gradient-text">AI</span></span>
+            </a>
+
+            <!-- Links Desktop -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#inicio" class="hover:text-brand-cyan transition-colors">Início</a>
+                <a href="#servicos" class="hover:text-brand-cyan transition-colors">Serviços</a>
+                <a href="#diferenciais" class="hover:text-brand-cyan transition-colors">Diferenciais</a>
+                <a href="#processo" class="hover:text-brand-cyan transition-colors">Como Funciona</a>
+                <a href="#contato" class="hover:text-brand-cyan transition-colors">Contato</a>
+            </nav>
+
+            <!-- Botão CTA Desktop -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="relative group overflow-hidden rounded-xl p-[1px] focus:outline-none">
+                    <span class="absolute inset-0 bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-gold rounded-xl animate-pulse"></span>
+                    <span class="relative px-5 py-2.5 bg-brand-dark rounded-[11px] flex items-center space-x-2 text-sm font-semibold text-white group-hover:bg-opacity-80 transition duration-300">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                        <span>Falar no WhatsApp</span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Botão Menu Mobile -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 border-b border-brand-border px-4 pt-2 pb-6 space-y-4">
+            <a href="#inicio" class="mobile-link block text-gray-300 hover:text-brand-cyan font-medium py-2">Início</a>
+            <a href="#servicos" class="mobile-link block text-gray-300 hover:text-brand-cyan font-medium py-2">Serviços</a>
+            <a href="#diferenciais" class="mobile-link block text-gray-300 hover:text-brand-cyan font-medium py-2">Diferenciais</a>
+            <a href="#processo" class="mobile-link block text-gray-300 hover:text-brand-cyan font-medium py-2">Como Funciona</a>
+            <a href="#contato" class="mobile-link block text-gray-300 hover:text-brand-cyan font-medium py-2">Contato</a>
+            <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="block w-full text-center py-3 rounded-xl bg-gradient-to-r from-brand-purple to-brand-cyan text-white font-semibold shadow-lg">
+                <i class="fa-brands fa-whatsapp mr-2"></i> Falar no WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative pt-32 pb-20 md:pt-44 md:pb-32 bg-hero-gradient overflow-hidden">
+        
+        <!-- Elementos de Luz/Brilho Decorativos -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-purple/20 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-brand-cyan/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto space-y-8">
+                
+                <!-- Tag Superior -->
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-brand-card border border-brand-border shadow-inner">
+                    <span class="flex h-2 w-2 rounded-full bg-brand-cyan animate-ping"></span>
+                    <span class="text-xs sm:text-sm font-semibold tracking-wide text-gray-300 uppercase">
+                        Soluções Digitais de Alta Performance & IA
+                    </span>
+                </div>
+
+                <!-- Título Principal -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-none">
+                    Acelere Vendas e Escale seu Negócio com <span class="gradient-text">Inteligência Artificial</span>
+                </h1>
+
+                <!-- Subtítulo -->
+                <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto font-normal leading-relaxed">
+                    Unimos tráfego pago de alta conversão, sites ultrarrápidos e criação de conteúdo inteligente para transformar sua presença digital em uma máquina de vendas.
+                </p>
+
+                <!-- Botões de Ação -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="#contato" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-purple via-indigo-600 to-brand-cyan text-white font-bold text-lg shadow-xl shadow-brand-purple/25 hover:shadow-brand-cyan/30 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-3">
+                        <span>Solicitar Orçamento Grátis</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#servicos" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-card border border-brand-border text-gray-300 font-semibold text-lg hover:bg-slate-800 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2">
+                        <span>Explorar Serviços</span>
+                    </a>
+                </div>
+
+                <!-- Estatísticas e Métricas -->
+                <div class="pt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="gradient-border">
+                        <div class="gradient-border-inner p-6">
+                            <div class="text-3xl sm:text-4xl font-extrabold text-brand-cyan font-mono">+300%</div>
+                            <div class="text-xs sm:text-sm text-gray-400 mt-1 font-medium">Aumento em Alcance</div>
+                        </div>
+                    </div>
+                    <div class="gradient-border">
+                        <div class="gradient-border-inner p-6">
+                            <div class="text-3xl sm:text-4xl font-extrabold text-brand-purple font-mono">+150k</div>
+                            <div class="text-xs sm:text-sm text-gray-400 mt-1 font-medium">Leads Qualificados</div>
+                        </div>
+                    </div>
+                    <div class="gradient-border">
+                        <div class="gradient-border-inner p-6">
+                            <div class="text-3xl sm:text-4xl font-extrabold text-brand-gold font-mono">5x</div>
+                            <div class="text-xs sm:text-sm text-gray-400 mt-1 font-medium">Retorno Médio (ROI)</div>
+                        </div>
+                    </div>
+                    <div class="gradient-border">
+                        <div class="gradient-border-inner p-6">
+                            <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono">10x</div>
+                            <div class="text-xs sm:text-sm text-gray-400 mt-1 font-medium">Velocidade na Criação</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <section id="servicos" class="py-24 bg-brand-dark/50 relative border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Nossos Serviços</h2>
+                <p class="text-3xl sm:text-5xl font-extrabold text-white">Soluções Estratégicas para o seu Crescimento</p>
+                <p class="text-gray-400 text-base">Combinamos tecnologia, design de alto impacto e ciência de dados para gerar resultados reais.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Card 1: Tráfego Pago -->
+                <div class="bg-brand-card border border-brand-border p-8 rounded-2xl hover:border-brand-purple/60 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-purple/10 border border-brand-purple/30 flex items-center justify-center text-brand-purple mb-6 group-hover:scale-110 group-hover:bg-brand-purple group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-chart-line text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Tráfego Pago</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                            Gestão estratégica de campanhas no Meta Ads e Google Ads. Anúncios segmentados focados em atração de clientes e escala de vendas.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-gray-400 space-y-2 border-t border-brand-border/60 pt-4">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Meta Ads (Instagram & FB)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Google Ads (Pesquisa & YouTube)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Otimização contínua de ROI</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Gestão de Mídias Sociais -->
+                <div class="bg-brand-card border border-brand-border p-8 rounded-2xl hover:border-brand-cyan/60 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan mb-6 group-hover:scale-110 group-hover:bg-brand-cyan group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-share-nodes text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Gestão de Redes Sociais</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                            Construção de posicionamento forte de marca. Planejamento editorial, design de posts, Reels e estratégias de engajamento diário.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-gray-400 space-y-2 border-t border-brand-border/60 pt-4">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Design & Identidade Visual</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Roteiros e Edição de Reels/Shorts</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Análise de Metricas & Audiência</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Criação de Sites e Landing Pages -->
+                <div class="bg-brand-card border border-brand-border p-8 rounded-2xl hover:border-brand-gold/60 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-6 group-hover:scale-110 group-hover:bg-brand-gold group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-code text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Sites e Landing Pages</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                            Páginas corporativas e de alta conversão ultrarrápidas, otimizadas para mobile e preparadas para transformar visitantes em clientes.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-gray-400 space-y-2 border-t border-brand-border/60 pt-4">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> UX/UI Design Moderno</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Carregamento Ultrarrápido</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Otimização SEO & Analytics</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Conteúdo com IA -->
+                <div class="bg-brand-card border border-brand-border p-8 rounded-2xl hover:border-emerald-500/60 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Criação de Conteúdo com IA</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                            Produção acelerada de copys persuasivas, avatares de IA, artigos e vídeos utilizando Inteligência Artificial de última geração.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-gray-400 space-y-2 border-t border-brand-border/60 pt-4">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Copywriting de Alta Conversão</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Vídeos e Narração com IA</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Escala e Automação de Conteúdo</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS COMPETITIVOS -->
+    <section id="diferenciais" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Por Que Nos Escolher</h2>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                        Transformamos Dados e IA em <span class="gradient-text">Faturamento</span>
+                    </h3>
+                    <p class="text-gray-400 text-base leading-relaxed">
+                        Esqueça métodos antigos e demorados. Implementamos soluções avançadas baseadas em inteligência artificial para entregar resultados em tempo recorde com foco total no retorno sobre o seu investimento.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-brand-card border border-brand-border">
+                            <div class="p-3 bg-brand-purple/20 text-brand-purple rounded-lg">
+                                <i class="fa-solid fa-database text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Estratégia Data-Driven</h4>
+                                <p class="text-sm text-gray-400">Todas as decisões são baseadas em métricas reais, sem achismos.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-brand-card border border-brand-border">
+                            <div class="p-3 bg-brand-cyan/20 text-brand-cyan rounded-lg">
+                                <i class="fa-solid fa-gauge-high text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Produção Acelerada por IA</h4>
+                                <p class="text-sm text-gray-400">Criamos conteúdos e estratégias até 10 vezes mais rápido que agências tradicionais.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-brand-card border border-brand-border">
+                            <div class="p-3 bg-brand-gold/20 text-brand-gold rounded-lg">
+                                <i class="fa-solid fa-bullseye text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Foco Total em ROI</h4>
+                                <p class="text-sm text-gray-400">Nosso objetivo final é colocar dinheiro no seu bolso através de vendas eficientes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Interativo / Calculadora de ROI Simples -->
+                <div class="bg-gradient-to-br from-brand-card via-slate-900 to-brand-card border border-brand-border p-8 rounded-3xl shadow-2xl relative">
+                    <div class="absolute -top-3 -right-3 bg-brand-purple text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                        Simulador de ROI
+                    </div>
+
+                    <h4 class="text-xl font-bold text-white mb-2">Simule seu Potencial de Retorno</h4>
+                    <p class="text-xs text-gray-400 mb-6">Veja uma estimativa simples com base em investimento em tráfego pago.</p>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 font-medium mb-2">
+                                <span>Investimento Mensal Estimado:</span>
+                                <span id="calc-budget-label" class="text-brand-cyan font-bold font-mono">R$ 2.000</span>
+                            </div>
+                            <input type="range" id="calc-budget" min="1000" max="20000" step="500" value="2000" class="w-full accent-brand-cyan bg-slate-800 rounded-lg cursor-pointer">
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-brand-dark/80 border border-brand-border/60 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-400">Estimativa de Alcance:</span>
+                                <span id="calc-reach" class="text-lg font-bold text-white font-mono">50.000 pessoas</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-400">Estimativa de Leads/Cliques:</span>
+                                <span id="calc-leads" class="text-lg font-bold text-brand-purple font-mono">1.000 a 2.500</span>
+                            </div>
+                            <div class="border-t border-brand-border/60 pt-4 flex justify-between items-center">
+                                <span class="text-sm font-bold text-gray-200">Retorno Estimado em Vendas:</span>
+                                <span id="calc-return" class="text-xl font-black text-emerald-400 font-mono">R$ 6.000 - R$ 10.000</span>
+                            </div>
+                        </div>
+
+                        <a href="#contato" class="block w-full text-center py-3.5 rounded-xl bg-brand-cyan hover:bg-cyan-500 text-brand-dark font-extrabold transition">
+                            Quero Alcançar Esses Resultados
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESSO DE TRABALHO -->
+    <section id="processo" class="py-24 bg-brand-dark/40 border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Nosso Processo</h2>
+                <p class="text-3xl sm:text-5xl font-extrabold text-white">4 Passos Para o Seu Sucesso</p>
+                <p class="text-gray-400 text-base">Metodologia clara, transparente e estruturada para escalar seu negócio.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative">
+                    <span class="text-5xl font-black text-brand-purple/20 absolute top-4 right-4">01</span>
+                    <div class="w-10 h-10 rounded-lg bg-brand-purple/10 text-brand-purple flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">1. Diagnóstico</h3>
+                    <p class="text-sm text-gray-400">Analisamos seu momento atual, público-alvo, concorrentes e oportunidades de mercado.</p>
+                </div>
+
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative">
+                    <span class="text-5xl font-black text-brand-cyan/20 absolute top-4 right-4">02</span>
+                    <div class="w-10 h-10 rounded-lg bg-brand-cyan/10 text-brand-cyan flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-chess"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">2. Estratégia</h3>
+                    <p class="text-sm text-gray-400">Montamos um plano sob medida integrando mídias, copys de IA e campanhas pagas.</p>
+                </div>
+
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative">
+                    <span class="text-5xl font-black text-brand-gold/20 absolute top-4 right-4">03</span>
+                    <div class="w-10 h-10 rounded-lg bg-brand-gold/10 text-brand-gold flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">3. Execução</h3>
+                    <p class="text-sm text-gray-400">Lançamos os anúncios, publicamos conteúdos e colocamos sua estrutura no ar.</p>
+                </div>
+
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative">
+                    <span class="text-5xl font-black text-emerald-500/20 absolute top-4 right-4">04</span>
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">4. Escala</h3>
+                    <p class="text-sm text-gray-400">Acompanhamos métricas diárias, otimizamos custos e escalamos o investimento rentável.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULÁRIO DE CONTATO / LEAD GENERATION -->
+    <section id="contato" class="py-24 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="gradient-border">
+                <div class="gradient-border-inner p-8 sm:p-12">
+                    
+                    <div class="text-center space-y-4 mb-10">
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Solicite um Orçamento</h2>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Pronto para transformar seus resultados?</h3>
+                        <p class="text-gray-400 text-sm">Preencha o formulário abaixo para receber uma análise gratuita e proposta personalizada.</p>
+                    </div>
+
+                    <!-- Mensagem de Sucesso Embutida -->
+                    <div id="form-success" class="hidden p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-3 mb-6">
+                        <i class="fa-solid fa-circle-check text-4xl text-emerald-400"></i>
+                        <h4 class="text-xl font-bold text-white">Solicitação Enviada com Sucesso!</h4>
+                        <p class="text-sm text-gray-300">Nossa equipe entrará em contato em até 2 horas úteis.</p>
+                    </div>
+
+                    <form id="lead-form" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-2">Seu Nome *</label>
+                                <input type="text" required placeholder="Ex: Roberto Silva" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-2">Seu WhatsApp *</label>
+                                <input type="tel" id="phone" required placeholder="(11) 99999-9999" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-2">E-mail Profissional</label>
+                                <input type="email" placeholder="seuemail@empresa.com" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-2">Serviço de Maior Interesse</label>
+                                <select class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-purple transition">
+                                    <option value="trafego">Tráfego Pago (Meta & Google Ads)</option>
+                                    <option value="redes">Gestão de Mídias Sociais</option>
+                                    <option value="sites">Criação de Sites / Landing Pages</option>
+                                    <option value="ia">Criação de Conteúdo com IA</option>
+                                    <option value="completo">Pacote Completo de Soluções</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-2">Fale sobre seu negócio ou projeto</label>
+                            <textarea rows="4" placeholder="Descreva brevemente seus objetivos e momento atual do seu negócio..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-purple via-indigo-600 to-brand-cyan text-white font-bold text-lg shadow-lg hover:shadow-brand-purple/30 hover:opacity-95 transition duration-300">
+                            Enviar e Receber Proposta
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark border-t border-brand-border/60 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-purple to-brand-cyan p-0.5">
+                        <div class="w-full h-full bg-brand-dark rounded-[6px] flex items-center justify-center">
+                            <i class="fa-solid fa-bolt text-brand-cyan text-sm"></i>
+                        </div>
+                    </div>
+                    <span class="text-lg font-bold text-white">NEXUS <span class="gradient-text">AI</span></span>
+                </div>
+
+                <!-- Copyright -->
+                <p class="text-xs text-gray-500 text-center">
+                    &copy; <span id="year"></span> Nexus AI Digital Solutions. Todos os direitos reservados.
+                </p>
+
+                <!-- Redes Sociais -->
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-xl bg-brand-card border border-brand-border flex items-center justify-center text-gray-400 hover:text-white hover:border-brand-purple transition">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-brand-card border border-brand-border flex items-center justify-center text-gray-400 hover:text-white hover:border-brand-cyan transition">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-brand-card border border-brand-border flex items-center justify-center text-gray-400 hover:text-white hover:border-emerald-400 transition">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 hover:scale-110 transition duration-300">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- SCRIPTS INTERATIVOS -->
+    <script>
+        // Atualiza ano do footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toggle do Menu Mobile
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Simulador de ROI Interativo
+        const budgetInput = document.getElementById('calc-budget');
+        const budgetLabel = document.getElementById('calc-budget-label');
+        const calcReach = document.getElementById('calc-reach');
+        const calcLeads = document.getElementById('calc-leads');
+        const calcReturn = document.getElementById('calc-return');
+
+        budgetInput.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            
+            // Formatador de Moeda
+            const formattedVal = val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+            budgetLabel.textContent = formattedVal;
+
+            // Cálculos fictícios de projeção
+            const reach = (val * 25).toLocaleString('pt-BR');
+            const minLeads = Math.floor(val * 0.5);
+            const maxLeads = Math.floor(val * 1.25);
+            const minReturn = (val * 3).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+            const maxReturn = (val * 5).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+
+            calcReach.textContent = `${reach} pessoas`;
+            calcLeads.textContent = `${minLeads.toLocaleString('pt-BR')} a ${maxLeads.toLocaleString('pt-BR')}`;
+            calcReturn.textContent = `${minReturn} - ${maxReturn}`;
+        });
+
+        // Envio do Formulário de Lead
+        const form = document.getElementById('lead-form');
+        const successMsg = document.getElementById('form-success');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Oculta formulário e exibe mensagem
+            form.reset();
+            successMsg.classList.remove('hidden');
+
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 6000);
+        });
+    </script>
+</body>
+</html>
